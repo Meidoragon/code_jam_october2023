@@ -6,7 +6,7 @@
   min-width: 100vw;
   position: relative;
   overflow-x: hidden;
-  color: #1e1e1e;
+  color: rgba(30, 30, 30, 1);
 }
 
 .header__description {
@@ -19,7 +19,7 @@
 }
 
 .header__description-title {
-  color: #fcf5ed;
+  color: rgba(252, 245, 237, 1);
   font-family: "AmaticSC", sans-serif;
   font-weight: 700;
   font-size: 100px;
@@ -50,7 +50,7 @@
 }
 
 .header__credit-link {
-  color: #1e1e1e;
+  color: rgba(30, 30, 30, 1);
 }
 
 .header__credit-link:hover {
