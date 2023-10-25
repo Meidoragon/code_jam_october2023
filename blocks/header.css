@@ -3,6 +3,7 @@
   flex-direction: column;
   background-color: rgb(244, 191, 150);
   height: 100vh;
+  min-height: 900px;
   min-width: 100vw;
   position: relative;
   overflow-x: hidden;

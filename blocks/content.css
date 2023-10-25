@@ -3,13 +3,13 @@
 }
 
 .content__title {
-  margin: 120px auto 0 120px;
-  padding-left: 16px;
+  margin: 120px auto 0;
   font-size: 36px;
+  text-align: center;
 }
 
 .content__wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 40px 120px 150px;
 }
