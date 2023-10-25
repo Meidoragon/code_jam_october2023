@@ -1,0 +1,16 @@
+.footer {
+  background-color: rgba(30, 30, 30, 1);
+  font-size: 24px;
+}
+
+.footer__text-container {
+  color: rgba(252, 245, 237, 1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 75px 60px;
+}
+
+.footer__text {
+  margin: 0;
+}

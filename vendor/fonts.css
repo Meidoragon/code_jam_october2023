@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "AmaticSC";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./Fonts/AmaticSC-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "AmaticSC";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./Fonts/AmaticSC-Bold.woff") format("woff");
+}

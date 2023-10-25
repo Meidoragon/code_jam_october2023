@@ -1,16 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="./pages/index.css" />
   </head>
-  <body>
+  <body class="page">
+    <header class="header">
+      <div class="header__description">
+        <h1 class="header__description-title">NYC Haunted House Finder</h1>
+        <p class="header__description-text">
+          Welcome to NYC Haunted House Finder! We're so happy you stopped by.
+          Your most memorable Halloween experience ever is just a click away.
+        </p>
+      </div>
+
+      <img
+        class="header__image"
+        src="./images/pumpkin-image.jpg"
+        alt="NYC Haunted House Finder"
+      />
+      <p class="header__credit">
+        Photo credit: Skyler Sawyer from
+        <a
+          class="header__credit-link"
+          href="https://unsplash.com/photos/a-lit-up-jack-o-lantern-in-the-dark-Wq-nmL12bCU"
+          target="_blank"
+          >Unsplash</a
+        >
+      </p>
+    </header>
+    <main class="main">
+      <div class="map main__map"></div>
+    </main>
+    <footer class="footer">
+      <div class="footer__text-container">
+        <p class="footer__text">Created by Practicum Students</p>
+        <p class="footer__text">2023</p>
+      </div>
+    </footer>
 
     <!-- prettier-ignore -->
     <!-- initialize Google Maps JS API -->
     <script type="module" src="./pages/index.js"></script>
-    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyDP1kYDxNyX4u1Roi-d1CsCmxfkXtQK8Wc", v: "beta"});</script>
-
+    <script>
+      ((g) => {
+        var h,
+          a,
+          k,
+          p = "The Google Maps JavaScript API",
+          c = "google",
+          l = "importLibrary",
+          q = "__ib__",
+          m = document,
+          b = window;
+        b = b[c] || (b[c] = {});
+        var d = b.maps || (b.maps = {}),
+          r = new Set(),
+          e = new URLSearchParams(),
+          u = () =>
+            h ||
+            (h = new Promise(async (f, n) => {
+              await (a = m.createElement("script"));
+              e.set("libraries", [...r] + "");
+              for (k in g)
+                e.set(
+                  k.replace(/[A-Z]/g, (t) => "_" + t[0].toLowerCase()),
+                  g[k]
+                );
+              e.set("callback", c + ".maps." + q);
+              a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+              d[q] = f;
+              a.onerror = () => (h = n(Error(p + " could not load.")));
+              a.nonce = m.querySelector("script[nonce]")?.nonce || "";
+              m.head.append(a);
+            }));
+        d[l]
+          ? console.warn(p + " only loads once. Ignoring:", g)
+          : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+      })({ key: "AIzaSyDP1kYDxNyX4u1Roi-d1CsCmxfkXtQK8Wc", v: "beta" });
+    </script>
   </body>
 </html>
