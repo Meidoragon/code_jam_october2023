@@ -30,6 +30,7 @@
 .header__description-text {
   font-size: 24px;
   margin: 0;
+  line-height: 1.6;
 }
 
 .header__image {
