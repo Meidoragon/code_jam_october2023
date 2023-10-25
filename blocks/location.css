@@ -1,0 +1,33 @@
+.location {
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+}
+
+.location__title {
+  font-size: 68px;
+  margin: 0 0 40px;
+  color: rgb(206, 90, 103);
+  font-family: "AmaticSC", sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+
+.location__info {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  text-align: center;
+}
+
+.location__info-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 18px;
+}
+
+.location__info-content {
+  margin: 0 0 30px;
+  font-size: 20px;
+}
