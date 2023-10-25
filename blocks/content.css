@@ -1,0 +1,15 @@
+.content {
+  color: rgba(30, 30, 30, 1);
+}
+
+.content__title {
+  margin: 120px auto 0 120px;
+  padding-left: 16px;
+  font-size: 36px;
+}
+
+.content__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 120px 150px;
+}
