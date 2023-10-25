@@ -1,12 +1,9 @@
 import { nycLATLNG as LOCATION,  locationBias as BIAS} from '../utils/constants.js';
 
-const request = {
-  query: 'haunted house',
-  fields: ['name', 'formatted_address', 'price_level'],
-  locationBias: BIAS,
-}
 
-const mapElement = document.querySelector('.map');
+
+
+const mapElement = document.querySelector('.main__map');
 let map;
 let houses = [];
 let NYC;
@@ -17,26 +14,40 @@ const promises = [
   google.maps.importLibrary('marker'),
 ];
 
-function initGoogle() {
+async function initGoogle() {
 
   return Promise.all(promises)
     .then(([Maps, Place, Markers]) => {
       NYC = new google.maps.LatLng(LOCATION.lat, LOCATION.lng);
+      const nearbyHousesRequest = {
+        location: NYC, radius: 20000, keyword: 'haunted house',
+      }
       map = new Maps.Map(mapElement, {
         zoom: 11,
         center: NYC,
         mapId: "Haunted House Map"
       })
       service = new google.maps.places.PlacesService(map);
-      service.nearbySearch({location: NYC, radius: 20000, keyword: 'haunted house',}, placeCallback);
+      service.nearbySearch(nearbyHousesRequest, handleNearbyHousesRequest);
   })
 }
 
-function placeCallback(results, status){
+function handleNearbyHousesRequest(results, status){
   if (status === google.maps.places.PlacesServiceStatus.OK) {
-    console.log(results.length);
+    console.log(results[0]);
+
     for (let i = 0; i < results.length; i++) {
-      console.log(results[i].name);
+      houses = results;
+      const marker = new google.maps.Marker({
+        position: results[i].geometry.location,
+        label: String(i),
+        title: houses[i].name,
+        optimized: false,
+        map: map,
+      })
+      marker.addListener("click", () => {
+        console.log(houses[Number(marker.label)].name);
+      })
     }
   }
 }
