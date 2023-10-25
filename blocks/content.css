@@ -13,3 +13,9 @@
   justify-content: space-between;
   padding: 40px 120px 150px;
 }
+
+.content__map{
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;
+}

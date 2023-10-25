@@ -3,7 +3,7 @@ import { nycLATLNG as LOCATION,  locationBias as BIAS} from '../utils/constants.
 
 
 
-const mapElement = document.querySelector('.main__map');
+const mapElement = document.querySelector('.content__map');
 let map;
 let houses = [];
 let NYC;
