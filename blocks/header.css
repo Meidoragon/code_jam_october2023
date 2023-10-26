@@ -62,7 +62,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 582px) {
   .header {
-    height: 835px;
+    height: 900px;
   }
 
   .header__description {
@@ -95,5 +95,45 @@
     font-size: 12px;
     right: calc(12%);
     bottom: 330px;
+  }
+}
+
+@media screen and (min-width: 583px) and (max-width: 857px) {
+  .header {
+    height: 1000px;
+  }
+
+  .header__description {
+    margin-left: 10px;
+  }
+
+  .header__description-title {
+    text-align: left;
+    font-size: 80px;
+    width: 300px;
+    margin-bottom: 100px;
+  }
+
+  .header__image {
+    width: 385px;
+    height: 385px;
+  }
+
+  .header__credit {
+    bottom: 595px;
+    right: 10px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 858px) and (max-width: 1325px) {
+  .header__description {
+    margin: 75px 0 0 10px;
+  }
+
+  .header__image {
+    width: 600px;
+    height: 600px;
+    bottom: 110px;
   }
 }

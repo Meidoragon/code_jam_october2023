@@ -31,3 +31,33 @@
   margin: 0 0 30px;
   font-size: 20px;
 }
+
+@media screen and (min-width: 320px) and (max-width: 582px) {
+  .location {
+    max-width: 300px;
+    margin: auto;
+    margin-top: 20px;
+  }
+
+  .location__title {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+
+  .location__info-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .location__info-content {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 583px) and (max-width: 881px) {
+  .location {
+    margin: auto;
+    margin-top: 30px;
+  }
+}
