@@ -2,6 +2,7 @@
 <html>
   <head>
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./pages/index.css" />
   </head>
   <body class="page">
@@ -9,8 +10,10 @@
       <div class="header__description">
         <h1 class="header__description-title">NYC Haunted House Finder</h1>
         <p class="header__description-text">
-          Welcome to NYC Haunted House Finder! We're so happy you stopped by.
-          Your most memorable Halloween experience ever is just a click away.
+          Welcome to NYC Haunted House Finder! We'll help you find the perfect
+          haunted house for your most memorable Halloween experience. Browse our
+          map to find the spooky experience that suits your needs. Happy
+          haunting 👻
         </p>
       </div>
 
@@ -30,29 +33,36 @@
       </p>
     </header>
     <main class="content">
-      <h2 class="content__title">Choose your location:</h2>
       <div class="content__wrapper">
-        <div class="content__map"></div>
+        <div class="content__map-and-title">
+          <h2 class="content__title">Browse locations:</h2>
+          <div class="content__map"></div>
+        </div>
         <div class="location content__location">
           <h3 class="location__title" id="location-name">Location title</h3>
           <ul class="location__info">
-            <li>
+            <li class="location__info-item">
               <p class="location__info-title">Address</p>
               <p class="location__info-content" id="location-address">test</p>
             </li>
-            <li>
+            <li class="location__info-item">
               <p class="location__info-title">Hours</p>
               <p class="location__info-content" id="location-hours">test</p>
+            </li>
+            <li class="location__info-item">
+              <p class="location__info-title">Rating</p>
+              <p class="location__info-content" id="location-rating"></p>
             </li>
             <li>
               <p class="location__info-title">Rating</p>
               <p class="location__info-content" id="location-rating">3.7 / 5</p>
             </li>
-            <li>
+            <li class="location__info-item">
               <p class="location__info-title">Contact</p>
-              <p class="location__info-content" id="location-phone">test</p>
-              <a class="location__info-content" id="location-url" href="#">test</a>
+              <p class="location__info-content" id="location-phone"></p>
+              <a class="location__info-content" id="location-url" href="#"></a>
             </li>
+
           </ul>
         </div>
       </div>
