@@ -6,7 +6,9 @@ const mapElement = document.querySelector('.content__map');
 const nameElement = document.getElementById('location-name');
 const addressElement = document.getElementById('location-address');
 const hoursElement = document.getElementById('location-hours');
-const pricesElement = document.getElementById('location-prices');
+const pricesElement = document.getElementById('location-rating');
+const phoneElement = document.getElementById('location-phone');
+const linkElement = document.getElementById('location-url');
 
 let googleMap;
 const hauntedHouses = {};
@@ -41,9 +43,10 @@ function handleNearbyHousesRequest(results, status){
       const searchName = results[i]["name"]
       const house = results[i];
       house.details = {};
+      console.log(house.photos[0].getUrl())
       const placeDetailRequest = {
         placeId: house.place_id,
-        fields: ['opening_hours', 'website', 'formatted_address', 'price_level']
+        fields: ['opening_hours', 'website', 'formatted_address', 'formatted_phone_number', 'rating']
       }
 
       const markerRequest = {
@@ -54,24 +57,30 @@ function handleNearbyHousesRequest(results, status){
       }
 
       placeService.getDetails(placeDetailRequest, (response) => {
+        console.log(response);
         house.details.opening_hours = response.opening_hours;
         house.details.website = response.website;
         house.details.formatted_address = response.formatted_address;
-        house.details.price_level = response.price_level;
+        house.details.formatted_phone_number = response.formatted_phone_number;
+        house.details.rating = response.rating;
+
+        if (i === 0) {
+          const starterInfo = {
+            name: house.name,
+            address: house.details.formatted_address,
+            hours: getPlaceHours(house),
+            link: house.details.website,
+            rating: house.details.rating,
+            phone: house.details.formatted_phone_number,
+          };
+          setInfo(starterInfo);
+        }
       })
 
       hauntedHouses[searchName] = house;
       const marker = new google.maps.Marker(markerRequest)
 
-      if (i === 0) {
-        const starterInfo = {
-          name: house.name,
-          address: house.details.formatted_address,
-          hours: getPlaceHours(house),
-          price: house.details.price_level,
-        };
-        setInfo(starterInfo);
-      }
+
 
       mapMarkers[searchName] = marker;
       marker.addListener("click", handleIconClick)
@@ -84,26 +93,40 @@ function handleIconClick(evt) {
   const markedHouse = hauntedHouses[searchName];
   //const mapMarker = mapMarkers[searchName];
 
-  const name = markedHouse.name;
-  const address = markedHouse.details.formatted_address;
-  const hours = getPlaceHours(markedHouse);
-  const priceLevel = markedHouse.details.price_level;
+  const houseInfo = {
+    name: markedHouse.name,
+    hours: getPlaceHours(markedHouse),
+    address: markedHouse.details.formatted_address,
+    phone: markedHouse.details.formatted_phone_number,
+    link: markedHouse.details.website,
+    rating: markedHouse.details.rating, 
+  }
 
-  setInfo({name, address, hours, priceLevel})
+  setInfo(houseInfo)
 }
 
-function setInfo({name, address, hours, price}){
+function setInfo({name, address, hours, rating, link, phone}){
   nameElement.textContent = name;
   addressElement.textContent = address;
   hoursElement.textContent = hours;
-  pricesElement.textContent = price;
+  pricesElement.textContent = rating;
+  phoneElement.textContent = "";
+  linkElement.textContent = "";
+  linkElement.setAttribute("href", "#");
+  if (phone === undefined && link === undefined){
+    phoneElement.textContent = "No contact information available."
+  } else {
+    phoneElement.textContent = phone;
+    linkElement.textContent = link;
+    linkElement.setAttribute("href", link);
+  }
+
 }
 
-function getPlaceHours(place){
-  const hoursObject = place.details.opening_hours;
+function getPlaceHours(hours){
   try{
-    const openTime = hoursObject.periods[dayOfWeek].open.time;
-    const closeTime = hoursObject.periods[dayOfWeek].close.time;
+    const openTime = hours.periods[dayOfWeek].open.time;
+    const closeTime = hours.periods[dayOfWeek].close.time;
     return `Open from ${timeConvert(openTime)} to ${timeConvert(closeTime)} today!`
   } catch {
     return "No time information available."
@@ -117,4 +140,5 @@ function timeConvert(time) {
 }
 
 Promise.all(libraryImportPromises).then(callGoogle);
+console.error('This message started out red, but now it is read.')
 
