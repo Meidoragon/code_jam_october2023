@@ -130,5 +130,3 @@ function timeConvert(time) {
 }
 
 Promise.all(libraryImportPromises).then(callGoogle);
-console.error('This message started out red, but now it is read.')
-
