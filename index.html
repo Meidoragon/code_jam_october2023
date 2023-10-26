@@ -2,6 +2,7 @@
 <html>
   <head>
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./pages/index.css" />
   </head>
   <body class="page">
@@ -35,40 +36,29 @@
       <div class="content__wrapper">
         <div class="content__map-and-title">
           <h2 class="content__title">Browse locations:</h2>
-          <div class="map content__map"></div>
+          <div class="content__map"></div>
         </div>
         <div class="location content__location">
-          <h3 class="location__title" id="location-name">
-            *Location Name Here*
-          </h3>
+          <h3 class="location__title" id="location-name">Location title</h3>
           <ul class="location__info">
             <li class="location__info-item">
               <p class="location__info-title">Address</p>
-              <p class="location__info-content" id="location-address">
-                *Insert address here*
-              </p>
+              <p class="location__info-content" id="location-address">test</p>
             </li>
             <li class="location__info-item">
               <p class="location__info-title">Hours</p>
-              <p class="location__info-content" id="location-hours">
-                *Insert hours here*
-              </p>
-            </li>
-            <li class="location__info-item">
-              <p class="location__info-title">Contact</p>
-              <p class="location__info-content" id="location-number">
-                *Insert phone number here*
-              </p>
-              <p class="location__info-content" id="location-website">
-                *Insert website url here*
-              </p>
+              <p class="location__info-content" id="location-hours">test</p>
             </li>
             <li class="location__info-item">
               <p class="location__info-title">Rating</p>
-              <p class="location__info-content" id="location-rating">
-                *Insert rating here*
-              </p>
+              <p class="location__info-content" id="location-rating"></p>
             </li>
+            <li class="location__info-item">
+              <p class="location__info-title">Contact</p>
+              <p class="location__info-content" id="location-phone"></p>
+              <a class="location__info-content" id="location-url" href="#"></a>
+            </li>
+
           </ul>
         </div>
       </div>
@@ -79,10 +69,10 @@
         <p class="footer__text">2023</p>
       </div>
     </footer>
-
-    <!-- prettier-ignore -->
-    <!-- initialize Google Maps JS API -->
     <script type="module" src="./pages/index.js"></script>
+    <!-- initialize Google Maps JS API -->
+    <!-- prettier-ignore -->
+
     <script>
       ((g) => {
         var h,

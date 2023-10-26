@@ -1,48 +1,143 @@
-import {
-  nycLATLNG as LOCATION,
-  locationBias as BIAS,
-} from "../utils/constants.js";
+import { nycLATLNG as LOCATION,  locationBias as BIAS} from '../utils/constants.js';
 
-const request = {
-  query: "haunted house",
-  fields: ["name", "formatted_address", "price_level"],
-  locationBias: BIAS,
-};
 
-const mapElement = document.querySelector(".map");
-let map;
-let houses = [];
+const dayOfWeek = new Date(Date.now()).getDay();
+const mapElement = document.querySelector('.content__map');
+const nameElement = document.getElementById('location-name');
+const addressElement = document.getElementById('location-address');
+const hoursElement = document.getElementById('location-hours');
+const pricesElement = document.getElementById('location-rating');
+const phoneElement = document.getElementById('location-phone');
+const linkElement = document.getElementById('location-url');
+
+let googleMap;
+const hauntedHouses = {};
+
+const mapMarkers = {};
 let NYC;
-let service;
-const promises = [
-  google.maps.importLibrary("maps"),
-  google.maps.importLibrary("places"),
-  google.maps.importLibrary("marker"),
+let placeService;
+const libraryImportPromises = [
+  google.maps.importLibrary('maps'),
+  google.maps.importLibrary('places'),
+  google.maps.importLibrary('marker'),
+  google.maps.importLibrary('geocoding'), //so far this hasn't been necessary. TODO: remove if it IS unnecessary
 ];
 
-function initGoogle() {
-  return Promise.all(promises).then(([Maps, Place, Markers]) => {
-    NYC = new google.maps.LatLng(LOCATION.lat, LOCATION.lng);
-    map = new Maps.Map(mapElement, {
-      zoom: 11,
-      center: NYC,
-      mapId: "Haunted House Map",
-    });
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(
-      { location: NYC, radius: 20000, keyword: "haunted house" },
-      placeCallback
-    );
-  });
+function callGoogle([Maps, Place]) {
+  NYC = new google.maps.LatLng(LOCATION.lat, LOCATION.lng);
+  const nearbyHousesRequest = {
+    location: NYC, radius: 10000, keyword: 'haunted house',
+  }
+  googleMap = new Maps.Map(mapElement, {
+    zoom: 12.5,
+    center: NYC,
+    mapId: "11f20905e0adeaa8",
+  })
+  placeService = new Place.PlacesService(googleMap);
+  placeService.nearbySearch(nearbyHousesRequest, handleNearbyHousesRequest);
 }
 
-function placeCallback(results, status) {
+function handleNearbyHousesRequest(results, status){
   if (status === google.maps.places.PlacesServiceStatus.OK) {
-    console.log(results.length);
     for (let i = 0; i < results.length; i++) {
-      console.log(results[i].name);
+      const searchName = results[i]["name"]
+      const house = results[i];
+      house.details = {};
+      const placeDetailRequest = {
+        placeId: house.place_id,
+        fields: ['opening_hours', 'website', 'formatted_address', 'formatted_phone_number', 'rating']
+      }
+
+      const markerRequest = {
+        position: house.geometry.location,
+        title: house.name,
+        optimized: false,
+        map: googleMap,
+      }
+
+      placeService.getDetails(placeDetailRequest, (response) => {
+        house.details.opening_hours = response.opening_hours;
+        house.details.website = response.website;
+        house.details.formatted_address = response.formatted_address;
+        house.details.formatted_phone_number = response.formatted_phone_number;
+        house.details.rating = response.rating;
+
+        if (i === 0) {
+          const starterInfo = {
+            name: house.name,
+            address: house.details.formatted_address,
+            hours: getPlaceHours(house.details.opening_hours),
+            link: house.details.website,
+            rating: house.details.rating,
+            phone: house.details.formatted_phone_number,
+          };
+          setInfo(starterInfo);
+        }
+      })
+
+      hauntedHouses[searchName] = house;
+      const marker = new google.maps.Marker(markerRequest)
+
+
+
+      mapMarkers[searchName] = marker;
+      marker.addListener("click", handleIconClick)
     }
   }
 }
 
-const googleAPI = initGoogle();
+function handleIconClick(evt) {
+  const searchName = evt.domEvent.target.title;
+  const markedHouse = hauntedHouses[searchName];
+  //const mapMarker = mapMarkers[searchName];
+
+  const houseInfo = {
+    name: markedHouse.name,
+    hours: getPlaceHours(markedHouse.details.opening_hours),
+    address: markedHouse.details.formatted_address,
+    phone: markedHouse.details.formatted_phone_number,
+    link: markedHouse.details.website,
+    rating: markedHouse.details.rating, 
+  }
+
+  setInfo(houseInfo)
+}
+
+function setInfo({name, address, hours, rating, link, phone}){
+  nameElement.textContent = name;
+  addressElement.textContent = address;
+  hoursElement.textContent = hours;
+  pricesElement.textContent = `${rating} / 5`;
+  phoneElement.textContent = "";
+  linkElement.textContent = "";
+  linkElement.setAttribute("href", "#");
+  if (phone === undefined && link === undefined){
+    phoneElement.textContent = "No contact information available."
+  } else {
+    phoneElement.textContent = phone;
+    linkElement.textContent = link;
+    linkElement.setAttribute("href", link);
+  }
+
+}
+
+function getPlaceHours(hours){
+  console.log(hours);
+  try{
+    const openTime = hours.periods[dayOfWeek].open.time;
+    const closeTime = hours.periods[dayOfWeek].close.time;
+    return `Open from ${timeConvert(openTime)} to ${timeConvert(closeTime)} today!`
+  } catch {
+    return "No time information available."
+  }
+}
+
+function timeConvert(time) {
+  let hours = Number(time.slice(0, 2));
+  const minutes = time.slice(-2);
+  return `${hours % 12}:${minutes} ${hours < 13 ? 'AM' : 'PM'}`
+}
+
+Promise.all(libraryImportPromises).then(callGoogle);
+console.error('This message started out red, but now it is read.')
+
