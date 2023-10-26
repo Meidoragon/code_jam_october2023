@@ -1,17 +1,18 @@
 .content {
   color: rgba(30, 30, 30, 1);
-}
-
-.content__title {
-  margin: 120px auto 0;
-  font-size: 36px;
-  text-align: center;
+  background-color: rgba(252, 245, 237, 1);
 }
 
 .content__wrapper {
   display: flex;
   justify-content: space-evenly;
-  padding: 40px 120px 150px;
+  padding: 120px 100px 150px;
+}
+
+.content__title {
+  margin: 0;
+  font-size: 30px;
+  padding: 0 0 20px 30px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 582px) {
