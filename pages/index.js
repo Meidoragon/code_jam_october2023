@@ -43,7 +43,6 @@ function handleNearbyHousesRequest(results, status){
       const searchName = results[i]["name"]
       const house = results[i];
       house.details = {};
-      console.log(house.photos[0].getUrl())
       const placeDetailRequest = {
         placeId: house.place_id,
         fields: ['opening_hours', 'website', 'formatted_address', 'formatted_phone_number', 'rating']
@@ -57,7 +56,6 @@ function handleNearbyHousesRequest(results, status){
       }
 
       placeService.getDetails(placeDetailRequest, (response) => {
-        console.log(response);
         house.details.opening_hours = response.opening_hours;
         house.details.website = response.website;
         house.details.formatted_address = response.formatted_address;
@@ -68,7 +66,7 @@ function handleNearbyHousesRequest(results, status){
           const starterInfo = {
             name: house.name,
             address: house.details.formatted_address,
-            hours: getPlaceHours(house),
+            hours: getPlaceHours(house.details.opening_hours),
             link: house.details.website,
             rating: house.details.rating,
             phone: house.details.formatted_phone_number,
@@ -95,7 +93,7 @@ function handleIconClick(evt) {
 
   const houseInfo = {
     name: markedHouse.name,
-    hours: getPlaceHours(markedHouse),
+    hours: getPlaceHours(markedHouse.details.opening_hours),
     address: markedHouse.details.formatted_address,
     phone: markedHouse.details.formatted_phone_number,
     link: markedHouse.details.website,
@@ -124,6 +122,7 @@ function setInfo({name, address, hours, rating, link, phone}){
 }
 
 function getPlaceHours(hours){
+  console.log(hours);
   try{
     const openTime = hours.periods[dayOfWeek].open.time;
     const closeTime = hours.periods[dayOfWeek].close.time;
