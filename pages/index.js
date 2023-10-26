@@ -109,7 +109,7 @@ function setInfo({name, address, hours, rating, link, phone}){
   nameElement.textContent = name;
   addressElement.textContent = address;
   hoursElement.textContent = hours;
-  pricesElement.textContent = rating;
+  pricesElement.textContent = `${rating} / 5`;
   phoneElement.textContent = "";
   linkElement.textContent = "";
   linkElement.setAttribute("href", "#");
