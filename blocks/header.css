@@ -1,7 +1,11 @@
 .header {
   display: flex;
   flex-direction: column;
-  background-color: rgb(244, 191, 150);
+  background-image: linear-gradient(
+    to bottom,
+    rgb(244, 191, 150),
+    rgba(252, 245, 237, 1)
+  );
   height: 100vh;
   min-height: 900px;
   min-width: 100vw;

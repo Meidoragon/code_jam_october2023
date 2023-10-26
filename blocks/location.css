@@ -2,11 +2,9 @@
   display: flex;
   flex-direction: column;
   max-width: 600px;
-  border-top: rgb(79, 79, 79) dashed 4px;
-  border-left: rgb(79, 79, 79) dashed 4px;
   border-radius: 20px;
   margin-left: 50px;
-  box-shadow: 20px 20px 0px rgb(79, 79, 79);
+  box-shadow: 10px 10px 0px rgb(79, 79, 79);
   background-color: white;
 }
 
