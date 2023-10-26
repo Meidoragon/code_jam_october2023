@@ -8,7 +8,6 @@
   );
   height: 100vh;
   min-height: 900px;
-  min-width: 100vw;
   position: relative;
   overflow-x: hidden;
   color: rgba(30, 30, 30, 1);
