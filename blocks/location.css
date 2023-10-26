@@ -6,7 +6,7 @@
 
 .location__title {
   font-size: 68px;
-  margin: 0 0 40px;
+  margin: 0;
   color: rgb(206, 90, 103);
   font-family: "AmaticSC", sans-serif;
   font-weight: 700;
@@ -17,17 +17,17 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  gap: 20px;
   text-align: center;
 }
 
 .location__info-title {
   font-size: 24px;
   font-weight: bold;
-  margin: 0 0 18px;
+  margin: 20px 0 12px;
 }
 
 .location__info-content {
-  margin: 0 0 30px;
+  margin: 0 0 10px;
   font-size: 20px;
+  color: rgba(30, 30, 30, 1);
 }
