@@ -1,23 +1,36 @@
 .location {
   display: flex;
   flex-direction: column;
-  max-width: 520px;
+  max-width: 600px;
+  border-top: rgb(79, 79, 79) dashed 4px;
+  border-left: rgb(79, 79, 79) dashed 4px;
+  border-radius: 20px;
+  margin-left: 50px;
+  box-shadow: 20px 20px 0px rgb(79, 79, 79);
+  background-color: white;
 }
 
 .location__title {
   font-size: 68px;
   margin: 0;
+  padding: 20px 20px 0;
   color: rgb(206, 90, 103);
   font-family: "AmaticSC", sans-serif;
   font-weight: 700;
   text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: white;
 }
 
 .location__info {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 0 20px 30px;
   text-align: center;
+  background-color: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .location__info-title {
