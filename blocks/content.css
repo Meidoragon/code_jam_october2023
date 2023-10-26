@@ -21,8 +21,7 @@
   padding: 0 0 20px 30px;
 }
 
-
-.content__map{
+.content__map {
   width: 100%;
   height: 500px;
   border-radius: 20px;
@@ -50,7 +49,7 @@
     padding: 40px 20px 100px;
   }
 
-  .content__map-and-title{
+  .content__map-and-title {
     width: 90vw;
   }
 }
@@ -64,4 +63,3 @@
     padding: 40px 20px 100px;
   }
 }
-
