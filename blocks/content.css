@@ -18,7 +18,7 @@
 .content__title {
   margin: 0;
   font-size: 30px;
-  padding: 0 0 20px 30px;
+  padding-bottom: 20px;
 }
 
 .content__map {
@@ -33,8 +33,13 @@
     font-size: 30px;
   }
 
+  .content__map-and-title {
+    width: 300px;
+  }
+
   .content__wrapper {
     flex-direction: column;
+    align-items: center;
     padding: 40px 10px 85px;
   }
 }
