@@ -1,4 +1,4 @@
-import { nycLATLNG as LOCATION,  locationBias as BIAS} from '../utils/constants.js';
+import { nycLATLNG as LOCATION } from '../utils/constants.js';
 
 
 const dayOfWeek = new Date(Date.now()).getDay();
@@ -13,14 +13,12 @@ const linkElement = document.getElementById('location-url');
 let googleMap;
 const hauntedHouses = {};
 
-const mapMarkers = {};
 let NYC;
 let placeService;
 const libraryImportPromises = [
   google.maps.importLibrary('maps'),
   google.maps.importLibrary('places'),
   google.maps.importLibrary('marker'),
-  google.maps.importLibrary('geocoding'), //so far this hasn't been necessary. TODO: remove if it IS unnecessary
 ];
 
 function callGoogle([Maps, Place]) {
@@ -74,13 +72,8 @@ function handleNearbyHousesRequest(results, status){
           setInfo(starterInfo);
         }
       })
-
       hauntedHouses[searchName] = house;
       const marker = new google.maps.Marker(markerRequest)
-
-
-
-      mapMarkers[searchName] = marker;
       marker.addListener("click", handleIconClick)
     }
   }
@@ -89,7 +82,6 @@ function handleNearbyHousesRequest(results, status){
 function handleIconClick(evt) {
   const searchName = evt.domEvent.target.title;
   const markedHouse = hauntedHouses[searchName];
-  //const mapMarker = mapMarkers[searchName];
 
   const houseInfo = {
     name: markedHouse.name,
@@ -122,7 +114,6 @@ function setInfo({name, address, hours, rating, link, phone}){
 }
 
 function getPlaceHours(hours){
-  console.log(hours);
   try{
     const openTime = hours.periods[dayOfWeek].open.time;
     const closeTime = hours.periods[dayOfWeek].close.time;
