@@ -69,9 +69,8 @@
   }
 
   .header__description {
+    margin: auto;
     margin-top: 62px;
-    margin-left: 26px;
-    margin-right: 26px;
   }
 
   .header__description-title {
@@ -89,14 +88,14 @@
   .header__image {
     width: 253px;
     height: 245px;
-    right: calc(10%);
+    right: calc(50% - 126.5px);
     margin: auto;
     margin-top: 300px;
   }
 
   .header__credit {
     font-size: 12px;
-    right: calc(12%);
+    right: calc(50% - 114px);
     bottom: 330px;
   }
 }
